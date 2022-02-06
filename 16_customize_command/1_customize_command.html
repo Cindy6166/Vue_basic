@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>n now: <span v-text="n"></span></h2>
+        <h2>n * 10 : <span v-big="n"></span></h2>
+        <!-- <h2>n * 10 : <span v-big-number="n"></span></h2> -->
+        <button @click="n++">n++</button>
+
+        <hr />
+        <input type="text" v-fbind:value="n" />
+    </div>
+    <div id="root2">
+        <input type="text" v-fbind:value="x">
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    // globalize
+    Vue.directive('fbind', {
+        bind(element, binding) {
+            element.value = binding.value
+        },
+        inserted(element, binding) {
+            element.focus()
+        },
+        update(element, binding) {
+            element.value = binding.value
+        }
+    })
+
+    // Vue.directive('big', function (element, binding) {
+    //     element.innerText = binding.value * 10
+    // })
+
+    new Vue({
+        el: '#root',
+        data: {
+            n: 1
+        },
+        directives: {
+            // 'big-number'(element, binding){
+            //     element.innerText = binding.value*10
+            // },
+
+            big(element, binding) {
+                element.innerText = binding.value * 10
+                console.log(this);
+            },
+
+            // fbind: {
+            //     bind(element, binding) {
+            //         element.value = binding.value
+            //     },
+            //     inserted(element, binding) {
+            //         element.focus()
+            //     },
+            //     update(element, binding) {
+            //         element.value = binding.value
+            //     }
+            // }
+        }
+    })
+    new Vue({
+        el: '#root2',
+        data: {
+            x: 2
+        }
+    })
+</script>
+
+</html>

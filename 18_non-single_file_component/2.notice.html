@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2.notice</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{msg}}</h1>
+        <my-school></my-school>
+        <my-school/>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const s = {
+        name:'LaLaSchool',
+        template: `
+        <div>
+            <h2>School Name: {{schoolName}}</h2>
+            <h2>School Address: {{address}}</h2>
+        </div>
+        `,
+        data() {
+            return {
+                schoolName: 'LALA',
+                address: '17 Yanigin Drive',
+            }
+        },
+    }
+   
+
+    new Vue({
+        el: '#root',
+        data:{
+            msg:'Hello!'
+        },
+        components: {
+            'my-school': s,
+        }
+    })
+
+</script>
+
+</html>

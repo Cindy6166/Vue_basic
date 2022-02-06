@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>condition_render</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>the value of {{n}}</h2>
+        <button @click="n++">click</button>
+        <!-- <h2 v-show="false">Welcome to {{name}}</h2> -->
+        <!-- <h2 v-show="1===1">Welcome to {{name}}</h2> -->
+
+        <!-- <h2 v-if="false">Welcome to {{name}}</h2> -->
+
+        <!-- <div v-if="n === 1">A</div>
+        <div v-else-if="n === 1">B</div>
+        <div v-else=>C</div> -->
+
+        
+        <template v-if="n===1">
+            <h2>hi</h2>
+            <h2>everyone</h2>
+            <h2>good</h2>
+        </template>
+
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'LaLa',
+                n: 0
+            }
+        })
+    </script>
+</body>
+
+</html>

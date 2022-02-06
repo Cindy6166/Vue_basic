@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2_principle_of_key</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>member list</h2>
+        <button @click="add">Add</button>
+        <ul>
+            <li v-for="(p, index) of persons">
+                {{p.name}} - {{p.age}}
+                <input type="text">
+            </li>
+        </ul>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            data:{ 
+                persons:[
+                    {id:'001', name:'Tom', age:'16'},
+                    {id:'002', name:'John', age:'17'},
+                    {id:'002', name:'Cat', age:'18'}
+                ]
+            },
+            methods: {
+                add(){
+                    const p = {id:'004', name:'Tommy', age:'20'}
+                    this.persons.unshift(p)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

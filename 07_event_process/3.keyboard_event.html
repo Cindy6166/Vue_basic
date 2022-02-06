@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.keyboard_event</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 1.vue中定義的案件別名：enter, delete, esc, space, tab, up, down, left, right -->
+        <!-- 系統修飾鍵(用法特殊)：ctrl, alt, shift, meta
+        (1)配合keyup使用：按下修飾鍵時，需再按下其他鍵，並釋放其他鍵後才觸發
+        (2)配合keydown使用：正常觸發事件 -->
+        <!-- Vue.config.keyCodes.自定義鍵名 ＝ 鍵碼 -->
+        <h2>Welcome to {{name}} !!</h2>
+        <input type="text"
+        placeholder="press enter to input" @keydown.ctrl.y="showInfo">
+        <!-- @keyup.caps-lock="showInfo" (CapsLock需寫成：caps-lock) -->
+        <!-- @keydown.tab="showInfo" (tab需搭配@keydown使用) -->
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        Vue.config.keyCodes.eeenter = 13 //定義了一個別名按鍵
+        new Vue({
+            el:'#root',
+            data:{ 
+                name: 'LALA'
+            },
+            methods:{
+               showInfo(e){
+                // console.log(e.key,e.keyCode);
+                // if(e.keyCode !== 13)return
+                console.log(e.target.value);
+               }
+            }
+        })
+    </script>
+</body>
+</html>

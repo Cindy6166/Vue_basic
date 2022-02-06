@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.姓名案例＿計算屬性</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        Last Name: <input type="text" v-model="lastName"><br/><br/>
+        Fiest Name: <input type="text" v-model="firstName"><br/><br/>
+        Full Name: <span>{{fullName}}</span>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+       const vm = new Vue({
+            el:'#root',
+            data:{ 
+                firstName:'Cindy',
+                lastName:'Cheng'
+            },
+            computed:{
+                fullName:{
+                    //當有人讀取時,get會被調用
+                    //get調用時機？1.初次讀取 2.所依賴的數據發生改變
+                    get(){
+                        return this.firstName + '-' + this.lastName
+                    },
+                    //當fullName被修改時，set會被調用
+                    set(value){
+                        console.log('set',value);
+                        const arr = value.split('-')
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

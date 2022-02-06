@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.天氣案例_watch_deeply</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>It's {{info}} today.</h2>
+        <button @click="isHot = !isHot">switch</button>
+        <hr/>
+        <h3>value of a : {{numbers.a}}</h3>
+        <button @click="numbers.a++">click</button>
+        <hr/>
+        <h3>value of b : {{numbers.b}}</h3>
+        <button @click="numbers.b++">click</button>
+        <hr/>
+        <button @click="numbers={a:666,b:888}">click</button>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el: '#root',
+            data:{
+                isHot:true,
+                numbers:{
+                    a:1,
+                    b:1
+                }
+            },
+            computed:{
+                info(){
+                    return this.isHot ? 'hot':'cold'
+                }
+            },
+            methods: {
+                changeWeather(){
+                    this.isHot = !this.isHot
+                }
+            },
+            watch:{
+                isHot:{
+                    immediate:true, 
+                    handler(newValue, oldValue){
+                        console.log('changed',newValue, oldValue);
+                    }
+                },
+                // 'numbers.a':{
+                //     handler(){
+                //         console.log('a is changed');
+                //     }
+                // }
+                numbers:{
+                    deep:true,
+                    handler(){
+                        console.log('numbers is changed');
+                    }
+                }
+            }
+        })
+
+        vm.$watch('isHot',{
+            immediate:true, 
+            handler(newValue, oldValue){
+                console.log('changed',newValue, oldValue);
+            }
+        })
+    </script>
+</body>
+</html>

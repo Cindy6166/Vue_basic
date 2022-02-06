@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1_integrate_form_data</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <form @submit.prevent="demo">
+            Account: <input type="text" v-model.trim="userInfo.account"><br /><br />
+            Password: <input type="password" v-model="userInfo.password"><br /><br />
+            Age: <input type="number" v-model.number="userInfo.age"><br><br>
+            Gender:
+            Male <input type="radio" name="gender" v-model="userInfo.gender" value="male">
+            Female <input type="radio" name="gender" v-model="userInfo.gender" value="female"><br /><br />
+            Hobby:
+            Study <input type="checkbox" v-model="userInfo.hobby" value="study">
+            Play Game <input type="checkbox" v-model="userInfo.hobby" value="game">
+            Eating <input type="checkbox" v-model="userInfo.hobby" value="eat"><br /><br />
+            Campus
+            <select v-model="userInfo.country">
+                <option value="">Please select your campus</option>
+                <option value="taiwan">Taiwan</option>
+                <option value="australia">Australia</option>
+                <option value="usa">USA</option>
+                <option value="uk">UK</option>
+            </select><br><br>
+            Others Informations: <br><br>
+            <textarea v-model.lazy="userInfo.other" cols="30" rows="10"></textarea><br><br>
+            <input v-model="userInfo.agree" type="checkbox">read and accept <a href="http://google.com">Rights and
+                Intrests</a><br><br>
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: '#root',
+        data: {
+            userInfo: {
+                account: '',
+                password: '',
+                age:0,
+                gender: '',
+                hobby: [],
+                country: 'uk',
+                other: '',
+                agree: ''
+            }
+        },
+        methods: {
+            demo() {
+                console.log(JSON.stringify(this._data));
+            }
+        }
+    })
+</script>
+
+</html>

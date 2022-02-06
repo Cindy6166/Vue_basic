@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Begining</title>
+    <!-- introduce Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- container -->  
+    <div id="root">
+        <h1>Hello, {{name.toUpperCase()}}.{{address}}! {{Date.now()}}</h1>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示
+
+        //create vue instance
+        const x = new Vue({
+            el:'#root',//el用於指定當前vue實例為哪個容器服務，通常為css選擇器字符串。
+            data:{ //data用於存儲數據，供el所指定的容器使用。
+                name:'Cindy',
+                address:'Taiwan'
+            }
+        })
+    </script>
+</body>
+</html>

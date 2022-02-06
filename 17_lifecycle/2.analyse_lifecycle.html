@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2.analyse_lifecycle</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>n now: {{n}}</h2>
+        <button @click="add">add++</button>
+
+        <button @click="bye">destroy</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: '#root',
+        // template:` <div><h2>n now: {{n}}</h2>
+        // <button @click="add">add++</button></div>`,
+        data: {
+            n:1
+        },
+        methods: {
+            add(){
+                console.log('add');
+                this.n++
+            },
+            bye(){
+                console.log('bye');
+                this.$destroy()
+            }
+        },
+        watch:{
+            n(){
+                console.log('n is changed');
+            }
+        },
+        beforeCreate() {
+            console.log('beforeCreate');
+        },
+        created() {
+            console.log('crated');
+        },
+        beforeMount() {
+            console.log('beforeMount');
+        },
+        mounted() {
+            console.log('mounted');
+        },
+        beforeUpdate() {
+            console.log('beforeUpdate');
+        },
+        updated() {
+            console.log('updated');
+            
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy');
+        },
+        destroyed() {
+            console.log('destroyed');
+            this.n=99
+            console.log(this.n);
+        },
+    })
+
+</script>
+
+</html>

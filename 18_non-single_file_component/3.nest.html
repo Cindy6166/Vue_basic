@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3.nest</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const student = Vue.extend({
+        template: `
+        <div>
+            <h2>Student Name: {{studentName}}</h2>
+            <h2>Student Age: {{age}}</h2>
+        </div>
+        `,
+        data() {
+            return {
+                studentName: 'Tom',
+                age: 18
+            }
+        }
+    })
+   
+
+    const school = {
+        name:'school',
+        template: `
+        <div>
+            <h2>School Name: {{schoolName}}</h2>
+            <h2>School Address: {{address}}</h2>
+            <student></student>
+        </div>
+        `,
+        data() {
+            return {
+                schoolName: 'LALA',
+                address: '17 Yanigin Drive',
+            }
+        },
+        components:{
+            student
+        }
+    }
+   
+    const hello = Vue.extend({
+        template:`
+            <div>
+                <h1>{{msg}}</h1>
+            </div>
+        `,
+        data(){
+            return {
+                msg:'Welcome LaLa'
+            }
+        }
+    })
+
+    const app = Vue.extend({
+        template:`
+            <div>
+                <hello></hello>
+                <school></school>
+            </div>
+        `,
+        components:{
+            school,
+            hello
+        }
+    })
+
+    new Vue({
+        template:`
+            <app></app>
+        `,
+        el: '#root',
+        components: {
+           app
+        }
+    })
+
+</script>
+
+</html>

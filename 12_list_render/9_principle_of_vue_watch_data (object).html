@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>9_principle_of_vue_watch_data (object)</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<h1>School Information</h1>
+			<h2>School Name: {{name}}</h2>
+			<h2>School Address: {{address}}</h2>
+			<h2>Principal: </h2>
+			<hr/>
+			<h1>Studen Information</h1>
+			<h2>Student Name: {{student.name}}</h2>
+			<h2 v-if="student.gender">Gender: {{student.gender}}</h2>
+			<h2>Student Age: real{{student.age.real}}.fake{{student.age.fake}}</h2>
+			<h2>Hobby</h2>
+			<button @click="change">change array straightly</button>
+			<button @click="push">Push</button>
+			<ul>
+				<li v-for="(hobby, index) in student.hobbies">{{hobby}}</li>
+			</ul>
+			<h2>Friends</h2>
+			<ul>
+				<li v-for="(friend, index) in student.friends" :key="index">
+					{{friend.name}}--{{friend.age}}
+				</li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false
+			
+			const vm = new Vue({
+				el:'#root',
+				data:{
+                    name:'LaLa',
+					address: 'Taiwan 888',
+					student:{
+						name:'Tom',
+						age:{
+							real:40,
+							fake:30
+						},
+						hobbies:['drink', 'dance', 'music'],
+						friends:[
+							{name:'Jay', age:25},
+							{name:'Kitty', age:33}
+						]
+					}
+				},
+				methods: {
+					//not work
+					// change(){
+					// 	this.student.hobbies[0]='Learn'
+					// },
+
+					//work
+					change(){
+						this.$set(this.student.hobbies, '0','LEARN')
+					},
+					push(){
+						this.student.hobbies.push('Learn')
+					}
+				},
+			}) 
+		</script>
+</html>

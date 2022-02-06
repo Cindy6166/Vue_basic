@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>10_summarize_vue_obseve_data</title>
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<h1>Studen Information</h1>
+			<button @click="student.age++">Add 1 year old to age</button>
+			<button @click="addGender">Add Gender</button>
+			<button @click="student.gender='unknow'">Revise the gender</button>
+			<button @click="addFriend">Add a friend to the top of list</button>
+			<button @click="updateFirstFriendName">Revise the name of the first friend</button>
+			<button @click="addHobby">Add a hobby</button>
+			<button @click="updateFirstHobby">Revise the first hobby</button>
+			<button @click="removeDrink">Filter the dink in hobbies</button>
+
+			<h2>Name: {{student.name}}</h2>
+			<h2>Age: {{student.age}}</h2>
+			<h2 v-if="student.gender">Gender: {{student.gender}}</h2>
+			<h2>Hobby</h2>
+			<ul>
+				<li v-for="(hobby, index) in student.hobbies">{{hobby}}</li>
+			</ul>
+			<h2>Friends</h2>
+			<ul>
+				<li v-for="(friend, index) in student.friends" :key="index">
+					{{friend.name}}--{{friend.age}}
+				</li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">
+			Vue.config.productionTip = false
+			
+			const vm = new Vue({
+				el:'#root',
+				data:{
+					student:{
+						name:'Tom',
+						age:30,
+						hobbies:['drink', 'dance', 'music'],
+						friends:[
+							{name:'Jay', age:25},
+							{name:'Kitty', age:33}
+						]
+					}
+				},
+				methods: {
+					addGender(){
+						Vue.set(this.student, 'gender', 'male')
+					},
+					addFriend(){
+						this.student.friends.unshift({name:'Jelly', age:27})
+					},
+					updateFirstFriendName(){
+						this.student.friends[0].name = 'LaLaLa'
+						this.student.friends[0].age = 22
+					},
+					addHobby(){
+						this.student.hobbies.push('singing')
+					},
+					updateFirstHobby(){
+						this.student.hobbies.splice(0,1,'chat')
+						// this.$set(this.student.hobbies,0, 'chat')
+					},
+					removeDrink(){
+						this.student.hobbies=this.student.hobbies.filter((hobby)=>{return hobby !== 'drink'})
+					}
+				},
+			}) 
+		</script>
+</html>

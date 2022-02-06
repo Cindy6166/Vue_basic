@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3.summarize_lifecycle</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2 :style="{opacity}">Welcome to Vue</h2>
+        <button @click="opacity=1">set opacity to 1</button>
+        <button @click="stop">stop</button>
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: '#root',
+        data: {
+            opacity: 1,
+        },
+        methods: {
+            stop(){
+                // clearInterval(this.timer)
+                this.$destroy()
+            }
+        },
+        mounted() {
+            this.timer = setInterval(() => {
+                console.log('setInterval');
+                this.opacity -= 0.01
+                if (this.opacity <=
+                    0) this.opacity = 1
+            }, 16);
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy');
+            clearInterval(this.timer)
+        },
+    })
+
+</script>
+
+</html>

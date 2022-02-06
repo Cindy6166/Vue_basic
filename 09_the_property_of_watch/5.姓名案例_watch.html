@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>5.姓名案例_watch</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 1.所被Vue管理的函数，最好写成普通函数，这样this的指向才是vm 或 组件实例对象。
+         2.所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数等、Promise的回调函数），最好写成箭头函数，
+            这样this的指向才是vm 或 组件实例对象。 -->
+    <div id="root">
+        Last Name: <input type="text" v-model="lastName"><br /><br />
+        First Name: <input type="text" v-model="firstName"><br /><br />
+        Full Name: <span>{{fullName}}</span>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: 'Cindy',
+                lastName: 'Cheng',
+                fullName: 'Cindy - Cheng'
+            },
+            computed: {
+            },
+            watch: {
+                firstName(val) {
+                    setTimeout(() => { this.fullName = val + ',' + this.lastName }, 1000)
+                },
+                lastName(val) {
+                    this.fullName = this.firstName + ',' + val
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

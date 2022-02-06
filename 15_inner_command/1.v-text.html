@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.v-text</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>Hello,{{name}}</div>
+        <div v-text="name">Hello,</div>
+        <div v-text="str"></div>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            data:{ 
+                name:'Cindy',
+                str:'<h3>lalala</h3>'
+            }
+        })
+    </script>
+</body>
+</html>

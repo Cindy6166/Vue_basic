@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2.modifier</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<style>
+    .demo1{
+        height: 50px;
+        background-color: palevioletred;
+    }
+    *{
+        margin: 10px 0;
+    }
+    .div1{
+        height: 100px;
+        background-color: peru;
+    }
+    .div2{
+        height: 50px;
+        background-color: plum;
+    }
+
+    .list{
+        width: 200px;
+        height: 200px;
+        background-color: plum;
+        overflow: auto;
+    }
+    li{
+        height: 100px;
+    }
+</style>
+<body>
+    <!-- 1.prevent
+         2.stop
+         3.once 
+         4.capture
+         5.self
+         6.passive-->
+
+    <div id="root">
+        <h2>Welcome to {{name}} !!</h2>
+        
+        <!-- 阻止默認事件(e.preventDefault()) -->
+        <a href="https://www.youtube.com/" @click.prevent="showInfo">ckick here</a>
+
+        <!-- 阻止事件冒泡(e.stopPropagation()) -->
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">Click Here!</button>
+            <a href="https://www.youtube.com/" @click.stop.prevent="showInfo">click here</a>
+            <!-- 修飾符可連續寫 順序都可 -->
+        </div>
+
+        <!-- 事件只觸發一次 -->
+        <button @click.once="showInfo">Click Here!</button>
+
+        <!-- 使用事件捕獲模式 -->
+        <div class="div1" @click.capture="showMsg(1)">
+            div1
+            <div class="div2" @click="showMsg(2)">
+                div2
+            </div>
+        </div>
+
+        <!-- 只在event.target是當前操作的元素才觸發事件 -->
+        <div class="demo1" @click.self="showInfo">
+            <button @click="showInfo">Click Here!</button>
+        </div>
+
+        <!-- 事件的默認行為立即執行，無需等待事件回調執行完畢 -->
+        <ul @wheel.passive="demo" class="list"> 
+            <!-- @scroll -->
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            data:{ 
+                name: 'LaLa'
+            },
+            methods:{
+                showInfo(e){
+                    
+                    alert('Hello, there!')
+                },
+                showMsg(v){
+                    console.log(v);                    
+                },
+                demo(v){
+                    for(let i = 0; i < 100000 ; i ++){
+                        console.log('#');
+                    }
+                    console.log('so tired...')                   
+                }
+            }
+        })
+    </script>
+</body>
+</html>

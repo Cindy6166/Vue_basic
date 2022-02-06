@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.basic_event_process</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>Welcome to {{name}} !!</h2>
+        <button v-on:click="showInfo1">click here would show message!1(不傳參)</button>
+        <button @click="showInfo2($event,77)">click here would show message!2(傳參)</button>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el:'#root',
+            data:{ 
+                name: 'LALA'
+            },
+            methods:{
+                showInfo1(event){
+                    alert('Hi, there!1')
+                    // console.log(event.target.innerText);
+                    // console.log(this); //this==vm
+                },
+                showInfo2(event, number){
+                    alert('Hi, there!2')
+                    console.log(event.target.innerText);
+                    console.log(this); //this==vm
+                }
+            }
+        })
+    </script>
+</body>
+</html>

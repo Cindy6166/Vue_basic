@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.姓名案例＿簡寫計算屬性</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        Last Name: <input type="text" v-model="lastName"><br/><br/>
+        Fiest Name: <input type="text" v-model="firstName"><br/><br/>
+        Full Name: <span>{{fullName}}</span>
+
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        // 只做讀取(get)時，才能簡寫
+       const vm = new Vue({
+            el:'#root',
+            data:{ 
+                firstName:'Cindy',
+                lastName:'Cheng'
+            },
+            computed:{ //看似函數，實際上是執行完此函數後往vm身上的fullName屬性上丟入此結果為其值(vm.fullName = fullName())
+                fullName(){
+                    return this.firstName + '-' + this.lastName
+                }
+            }
+        })
+    </script>
+</body>
+</html>

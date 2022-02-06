@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MVVM</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>school name: {{name}}</h1>
+        <h1>school address: {{address}}</h1>
+        <h1>test1:{{1+1}}</h1>
+        <h1>test2:{{$options}}</h1>
+        <h1>test3:{{_c}}</h1>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el:'#root',
+            data:{ 
+                name:'Cindy',
+                address:'Taiwan1717'
+            }
+        })
+        console.log(vm);
+    </script>
+</body>
+</html>
